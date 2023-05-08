@@ -24,3 +24,12 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - uses: mr-smithers-excellent/docker-build-push@v6
+      name: Deploy Docker image
+      with:
+        image: repo/luizafurtadoportela/aula_maven_f
+        tags: 1.0
+        registry: docker.io	
+        dockerfile: dockerfile
+        username: luizafurtadoportela
+        password: ${{ secrets.DOCKER_PASSWORD }}
